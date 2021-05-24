@@ -22,10 +22,23 @@ public class AutoSalone
     private final int N_MAX_VENDITE=100;
     private int nVenditeCliente=0;
     
+    /**
+     * Costruttore della classe AutoSalone
+     * Consente di istanziare una nuova vendita
+     * costituito da NUM_MAX_VENDITE 100
+     */
+    
         public AutoSalone()
         {
             elencoVendita=new Auto[N_MAX_VENDITE];
         }
+        
+            /**
+     * Costruttore di copia. Consente di istanziare una nuova vendite
+     * vendita dell'autosalone passato come parametro
+     * @param a
+     * 
+     */
         
         public AutoSalone(AutoSalone a)
     {
@@ -35,6 +48,11 @@ public class AutoSalone
             elencoVendita[i]=a.getAuto(i);
         }
     }
+        
+        
+     
+        
+    
 
     public Auto[] getElencoVendita() {
         return elencoVendita;
@@ -48,17 +66,30 @@ public class AutoSalone
         return nVenditeCliente;
     }
 
-   
+/**
+ * 
+ * @param aggiungiVendita
+ * Permette di aggiungere una vendita
+ */
 
     public void setElencoVendita(Auto[] aggiungiVendita) {
         this.elencoVendita = aggiungiVendita;
     }
 
+    /**
+     * 
+     * @param nVenditeCliente 
+     * Visualizza numero di vendite ad un cliente
     public void setnVenditeCliente(int nVenditeCliente) {
         this.nVenditeCliente = nVenditeCliente;
     }
 
-   
+   /**
+   * 
+   * @param posizione
+   * Dove si trova l'auto
+   * @return 
+   */
     public Auto getAuto(int posizione)
     {
         if(posizione<0||posizione>=getN_MAX_VENDITE())
@@ -68,11 +99,22 @@ public class AutoSalone
         return new Auto(elencoVendita[posizione]);
     }
     
+  /**
+   * 
+   * @param a 
+   * Aggiunge un auto
+   */
     public void AggiungiAuto (Auto a)
     {
         elencoVendita[nVenditeCliente]=new Auto(a);
         nVenditeCliente++;
     }
+    
+    /**
+     * 
+     * @param Codice 
+     * Elimina un'auto inserita per errore
+     */
        
     public void EliminaAuto (int Codice)
     {
@@ -87,6 +129,13 @@ public class AutoSalone
                 }
     }
     
+    /**
+     * 
+     * @param posizione 
+     * Sposta auto
+     * 
+     */
+    
     private void AggiornaPosizioneAuto(int posizione)
     {
         for (int i=posizione;i<nVenditeCliente-1;i++)
@@ -96,7 +145,16 @@ public class AutoSalone
         elencoVendita[nVenditeCliente-1]=null;     
         nVenditeCliente--;
     }
-    
+    /**
+     * 
+     * @param nome
+     * @param cognome
+     * @return 
+     * Visualizza dati relativi
+       a tutte le auto acquistate
+       da un cliente
+
+     */
     public Auto[] VisualizzaAuto(String nome, String cognome)
     {
         Auto[] AutoPersona=new Auto[nVenditeCliente];
@@ -115,7 +173,12 @@ public class AutoSalone
              
              
     }
-    
+    /**
+     * 
+     * @param Modello
+     * Visualizza il numero di auto vendute dello stesso modello
+     * @return 
+     */
      public Auto[] VisualizzaModello(String Modello)
     {
         Auto[] AutoPersona=new Auto[nVenditeCliente];
@@ -135,6 +198,14 @@ public class AutoSalone
              
     }
      
+     /**
+      * 
+      * @param anno
+      * @param mese
+      * @param giorno
+      * Visualizza auto vendute in un det. giorno in ordine alfabetico
+      * @return 
+      */
       public Auto[] VisualizzaGiorno(int anno,int mese,int giorno)
     {
         LocalDate Data=LocalDate.of(anno, mese, giorno);
@@ -159,12 +230,20 @@ public class AutoSalone
              
     }
       
+      /**
+       * 
+       * @param posizione
+       * @return 
+       * Esporta in formato CSV i
+        dati di tutte le vendite.
+
+       */
       public Auto getAutoPosizione(int posizione)
     {
         return elencoVendita[posizione];
     }
       
-    public void salvaAuto(String nomeFile) throws IOException
+    public void salvaAuto(String nomeFile) throws IOException, FileException
     {
         TextFile f1=new TextFile(nomeFile,'W');
         Auto auto;
@@ -172,13 +251,19 @@ public class AutoSalone
             {
                auto=getAutoPosizione(i);
                 if(auto!=null)
-               /* {
+              {
                     f1.toFile(auto.getCodice()+";"+auto.getTarga()+";"+auto.getnome()+";"+auto.getcognome()+";"+auto.getModello()+";"+auto.getMarca()+";"+auto.getVendita()+";");
-                } */
+                } 
             }
         f1.close();
     }
     
+    /**
+     * 
+     * @param nomeFile
+     * @throws IOException 
+     * Salva i dati su un file binario
+     */
     public void salvaAutoBinario(String nomeFile) throws IOException
     {
         FileOutputStream f1=new FileOutputStream(nomeFile);
@@ -189,4 +274,5 @@ public class AutoSalone
     }
 }
 
+ 
    
