@@ -80,6 +80,20 @@ public class Auto
                  this.Vendita=a.getVendita();
          
           }
+         
+         
+         
+            public Auto()
+    {
+        this.nome=null;
+        this.cognome=null;
+        this.Codice=0;
+        this.Marca=null;
+        this.Modello=null;
+        this.Targa=null;
+        this.Vendita=null;
+
+    }
     
     
            
@@ -228,12 +242,6 @@ public class Auto
        s="Codice: "+getCodice()+"; Nome: "+getnome()+"; Cognome: "+getcognome()+"; Marca: "+getMarca()+"; Modello: "+getModello()+"; Targa: "+getTarga()+ " Vendita: "+getVendita();
        return s;
    }
-
-    void setVendita(int giorno, int mese, int anno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    boolean Prezzo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
+
+    
